@@ -1,0 +1,169 @@
+<div class="outer">
+    <!-- Navbar-->
+    <header class="header js-header" data-id="#header" style="padding: 12px 20px;">
+        <div class="header__center center">
+            <div class="header__wrapper">
+                <div class="header__wrap js-header-wrap">
+                    <nav class="header__nav" style="font-size: 12px; cursor: pointer; font-weight: 500; color: #979797;">
+
+                        <a class="header__item custom-nav-link" [matMenuTriggerFor]="lang">
+                            Select Language
+                        </a>
+                        <mat-menu #lang="matMenu" xPosition="before" >
+                            <div (click) = "$event.stopPropagation()">
+                                <div class="item" mat-menu-item  style="padding-left: 10px;">
+                                <label for="">English</label> <input type="radio" name="lan" id="english" />
+                            </div>
+                            
+                            <div class="item" mat-menu-item  style="padding-left: 10px;">
+                                <label for="">Urdu</label>
+                                <input type="radio" name="lan" id="urdu" />
+                            </div>
+                            </div>
+                           
+
+                        </mat-menu>
+
+                        <a class="header__item custom-nav-link" [matMenuTriggerFor]="assist">
+                            Typing Assistant
+                        </a>
+                        <mat-menu #assist="matMenu" xPosition="after" >
+                            <div class="content" style="padding-left: 10px;" (click) = "$event.stopPropagation()">
+                                <div class="item" *ngIf="toggle">
+                                  <i (click)="changeMode()" class="fas fa-toggle-off off"></i>
+                              
+                                  <p>{{ message }}</p>
+                                </div>
+                                <div class="item" *ngIf="!toggle">
+                                  <i (click)="changeMode()" class="fas fa-toggle-on on"></i>
+                              
+                                  <p>{{ message }}</p>
+                                </div>
+                              </div>
+                        </mat-menu>
+
+
+                        <a class="header__item custom-nav-link" [matMenuTriggerFor]="invites">
+                            Invite
+                        </a>
+                        <mat-menu #invites="matMenu" xPosition="after" >
+                            <div class="content1" style="padding-left: 10px;"  (click) = "$event.stopPropagation()">
+                                <div class="item1">
+                                    <input type="text" class="form-control" placeholder="Recipient's Email" />
+                                    <button class="btn" type="button">Add</button>
+                                </div>
+                                <br />
+                                <a href="#">View all invites</a>
+                            </div>
+                        </mat-menu>
+
+
+                        <a class="header__item custom-nav-link"
+                            [matMenuTriggerFor]="translate">
+                            Set deadlines
+                        </a>
+                        <mat-menu #translate = "matMenu" xPosition="after" >
+                            <div class="content12" style="padding-left: 10px;"  (click) = "$event.stopPropagation()">
+                                <form [formGroup]="dateForms" (ngSubmit)="timer()">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Choose a date</mat-label>
+                                        <input 
+                                            matInput 
+                                            [matDatepicker]="picker"
+                                            [min] = "todayDate"
+                                            formControlName="date">
+                                        <mat-hint>MM/DD/YYYY</mat-hint>
+                                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                    <br>
+                                    <button 
+                                        [ngStyle]="{'opacity': (dateForms.status !== 'VALID') ? '0.5' : '1'}"
+                                        style="cursor: pointer; background-color: rgb(240, 240, 240);
+                                            padding: 7px 15px;
+                                            border-radius: 4px;
+                                            " 
+                                        type="submit" 
+                                        class="login__btn btn btn_blue btn_wide"
+                                        [disabled]="dateForms.status !== 'VALID'">
+                                        Set
+                                    </button>
+                                </form> 
+                            </div>
+                        </mat-menu>
+
+                        <a class="header__item custom-nav-link"  
+                            (click)="saveAsDocx()" >
+                            Download
+                        </a>
+                        <a class="header__item custom-nav-link"
+                        (click)="openDialogTranslate('3000ms', '1500ms')">
+                            Translate
+                        </a>
+
+                        <a class="header__item custom-nav-link"
+                        (click)="openDialog('3000ms', '1500ms')">
+                            <i class="fa-solid fa-microphone-lines"></i>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+
+
+<!-- Deadlines and reminders -->
+<div class="outer" 
+    *ngIf="deadlineView"
+    style="
+           background-color: #4158D0;
+           background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+            color: #fff">
+    <!-- Navbar-->
+    <header class="header js-header" data-id="#header" >
+        <div class="header__center center"  > 
+            <div class="header__wrapper">
+                <div style="
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+               " class="header__wrap js-header-wrap"
+                   >
+                
+                    <h4>Deadline and Reminder has been set: <span>{{hours1}}:{{minutes1}}:{{seconds1}}</span>
+                    </h4>
+                    <button
+                        style="padding: 7px 15px;
+                        color: #fff;
+                        background-color: #8397ff;
+                        border-radius: 4px;" 
+                        (click) = "clearTimer()">Clear Timer</button>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+<!-- 
+<ejs-documenteditorcontainer serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/documenteditor/"
+    height="100%" 
+    (contentChange)="onCreate()"
+    #documenteditor_default
+    [enableToolbar]=true>
+</ejs-documenteditorcontainer> -->
+
+<ejs-documenteditorcontainer 
+    serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/documenteditor/"
+    height="100%" 
+    (contentChange)="onCreate()"
+    #documenteditor_default 
+    [enableToolbar]=true 
+    [enableSpellCheck]=true 
+    (created)="onCreated()"
+> 
+</ejs-documenteditorcontainer>
+
+
+<!-- enableRtl = "true"
+    locale="ar-AE" -->

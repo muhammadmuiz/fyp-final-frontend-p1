@@ -1,0 +1,58 @@
+{
+  "users": [
+    {
+      "id": 0,
+      "username": "ahmad12",
+      "firstname": "Ahmad",
+      "lastname": "Hussain",
+      "email": "ahmadh12@gmail.com",
+      "userData": {
+        "password": "Muhammad123",
+        "confirmpassword": "Muhammad123"
+      },
+      "books": [
+        {
+          "id": 0,
+          "name": "Jason Roy",
+          "createdOn": "9 Nov 2019"
+        },
+        {
+          "id": 1,
+          "name": "Lee",
+          "createdOn": "9 Nov 2019"
+        },
+        {
+          "id": 2,
+          "name": "Tait",
+          "createdOn": "9 Nov 2019"
+        }
+      ]
+    }
+  ],
+ 
+  "studio": [
+    {
+      "id": 0,
+      "book_pages": [
+        {
+          "page_number": "1",
+          "content": "Hello to the new beggining"
+        },
+        {
+          "page_number": "2",
+          "content": "Hello to the new beggining 2"
+        },
+        {
+          "page_number": "3",
+          "content": "Hello to the new beggining 3"
+        }
+      ]
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    }
+  ]
+}

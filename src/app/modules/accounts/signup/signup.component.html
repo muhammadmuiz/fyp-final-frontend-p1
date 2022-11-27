@@ -1,0 +1,241 @@
+<div class="login">
+    <div class="login__row" *ngIf="!loader">
+
+        <div class="login__col">
+            <a class="login__logo" href="index.html">
+                <img style="width: 60px; height: 60px;" src="/assets/img/promotions-icon-3.png" alt="" routerLink="">
+            </a>
+            <h1 class="login__title h1">The Covers <br>are too close!</h1>
+            <div class="login__info h6">Pour thoughts on paper</div>
+            <div class="login__preview">
+                <img src="/assets/img/figures-2.png" alt="">
+            </div>
+        </div>
+
+        <div class="login__col">
+            <a class="login__logo" href="index.html">
+                <img style="width: 40px; height: 40px;" src="/assets/img/promotions-icon-3.png" alt="" routerLink="">
+            </a>
+            <div class="login__form update_signup">
+                <div class="login__stage h4">Sign Up <br>to Flatpage Classic</div>
+                <form [formGroup]="signupForms" (ngSubmit)="onSubmit()">
+                    <div class="login__field field js-field">
+                        <div class="field__label">First Name</div>
+                        <div class="field__wrap">
+                            <input 
+                                class="field__input js-field-input common"
+                                formControlName="firstname" 
+                                type="text" 
+                                autofocus
+                            >
+                            <span 
+                                class="help-block" 
+                                *ngIf="
+                                  !signupForms.get('firstname').valid &&
+                                  signupForms.get('firstname').touched
+                                ">
+                                Enter name!
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="login__field field js-field">
+                        <div class="field__label">Last Name</div>
+                        <div class="field__wrap">
+                            <input 
+                                class="field__input js-field-input common"
+                                formControlName="lastname" 
+                                type="text"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="login__field field js-field">
+                        <div class="field__label">Username</div>
+                        <div class="field__wrap">
+                            <div style="display:flex; align-items:center; justify-content: flex-end; width: 100%;">
+                                <span class="help-block1" *ngIf="message == 'Username already Taken'">
+                                    <i class="fa-solid fa-hippo"></i> Username already Taken
+                                </span>
+                             </div>
+
+                            <input 
+                                class="field__input js-field-input common"
+                                formControlName="username" 
+                                type="text"
+                            > 
+                            <span 
+                                class="help-block" 
+                                *ngIf="
+                                  !signupForms.get('username').valid &&
+                                  signupForms.get('username').touched
+                                ">
+                                Please enter a valid username!
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="login__field field js-field">
+                        <div class="field__label">Email address</div>
+                        <div class="field__wrap">
+
+                            <div style="display:flex; align-items:center; justify-content: flex-end; width: 100%;">
+                                <span class="help-block1" *ngIf="message == 'Email is already used'">
+                                    <i class="fa-solid fa-hippo"></i> Email is already used
+                                </span>
+                             </div>
+
+                            <input 
+                                class="field__input js-field-input common"
+                                formControlName="email" 
+                                type="email"
+                            >
+                            <span 
+                                class="help-block" 
+                                *ngIf="
+                                  !signupForms.get('email').valid && signupForms.get('email').touched
+                                ">
+                                Entered email is not correct
+                            </span>
+                           
+                  
+                        </div>
+                    </div>
+
+                    <!-- Password Group -->
+                    <div formGroupName="userData" class="userdata">
+                        <!-- password -->
+                        <div class="login__field field js-field">
+                            <div class="field__label">Password</div>
+                            <div class="field__wrap">
+                                <input 
+                                    class="field__input js-field-input common" 
+                                    #passwordtoggler 
+                                    (paste)="(false)"
+                                    formControlName="password" 
+                                    type="password"
+                                >
+                                <span 
+                                    class="help-block" 
+                                    *ngIf="
+                                        !signupForms.get('userData.password').valid &&
+                                        signupForms.get('userData.password').touched
+                                    ">
+                                    Please enter a valid password!
+                                </span>
+                            </div>
+                            <div class="flexer-eye">
+                                <a 
+                                    class="eye-droppper" 
+                                    (click)="togglePasswordtoShow()">
+                                    <i 
+                                        class="fa fa-eye-slash"
+                                        #iconEye 
+                                        aria-hidden="true">
+                                    </i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- confirm password -->
+                        <div class="login__field field js-field">
+                            <div class="field__label">Confirm Password</div>
+                            <div class="field__wrap">
+                                <input 
+                                    class="field__input js-field-input" 
+                                    formControlName="confirmpassword"
+                                    type="password"
+                                    #passwordtoggler2
+                                    (paste)="(false)" 
+                                    [ngClass]="{
+                                        bordered:
+                                        signupForms.get('userData.confirmpassword').touched &&
+                                        signupForms.get('userData').invalid
+                                    }" 
+                                    [ngClass]="{
+                                        not_bordered:
+                                        signupForms.get('userData.confirmpassword').touched &&
+                                        !signupForms.get('userData').invalid
+                                    }"
+                                >
+                                <div 
+                                    class="help-block"
+                                    *ngIf="
+                                        signupForms.get('userData.password').touched &&
+                                        signupForms.get('userData.confirmpassword').touched &&
+                                        signupForms.get('userData').errors
+                                    ">
+                                    Password doesn't match
+                                </div>
+                            </div>
+                            <div class="flexer-eye">
+                                <a 
+                                    class="eye-droppper" 
+                                    (click)="togglePasswordtoShow2()"> 
+                                    <i 
+                                        class="fa fa-eye-slash"
+                                        #iconEye2 
+                                        aria-hidden="true">
+                                    </i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="login__note">By signing up I agree that I am 18 years of age or older, to the 
+                        <a  routerLink="/signup">User Agreement</a>, 
+                        <a  routerLink="/signup">Privacy Policy</a>, 
+                        <a  routerLink="/signup">Cookie Policy</a>, 
+                        and 
+                        <a  routerLink="/signup">E-Sign Consent</a>.
+                    </div>
+
+                    <button 
+                        [ngStyle]="{'opacity': (signupForms.status !== 'VALID') ? '0.5' : '1'}"
+                        style="cursor: pointer;" 
+                        type="submit" 
+                        class="login__btn btn btn_blue btn_wide"
+                        [disabled]="signupForms.status !== 'VALID'" >
+                        Sign Up
+                    </button>
+
+                    <br> <br>
+
+                   
+                </form>
+
+                <button 
+                    style="
+                        cursor: pointer;
+                        background-color: #fff;
+                        border: 1px solid #e5605e;
+                    " 
+                    class="login__btn btn outline_new btn_wide"
+                    (click)="authService.GoogleAuth()">
+                    <i 
+                        class="fa-brands fa-google"
+                        style="color: #1a2844;">
+                     </i>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    Sign up with Google
+                </button>
+                <div class="login__flex">
+                    <div class="login__text">Already a member?</div>
+                    <a class="login__link"  routerLink="/login">
+                        <svg class="icon icon-link">
+                            <use xlink:href="/assets/img/sprite.svg#icon-link"></use>
+                        </svg>
+                        Log in
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="login__row2" *ngIf="loader">
+        <mat-spinner color="accent"></mat-spinner> <br>
+        <h4>Loading . . . Please Wait</h4>
+    </div>
+
+</div>

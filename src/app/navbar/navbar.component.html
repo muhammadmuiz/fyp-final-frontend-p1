@@ -1,0 +1,105 @@
+<div class="outer">
+    <!-- Navbar-->
+    <header class="header js-header" data-id="#header">
+        <div class="header__center center" >
+            
+            <a class="header__logo" routerLink="">
+                <img class="header__pic header__pic_desktop some-icon" 
+                     src="/assets/logo.svg" 
+                     alt="Flatpage">
+                <img
+                    class="header__pic header__pic_desktop some-icon-dark" 
+                    src="/assets/img/logo/flatpage-mini.png"
+                    alt="Flatpage">
+                <img
+                    class="header__pic header__pic_mobile" 
+                    src="/assets/img/logo/flatpage-mini.png"
+                    alt="Flatpage">
+            </a>
+
+            <div class="header__wrapper">
+                <div class="header__wrap js-header-wrap">
+                    <nav class="header__nav">
+                     
+                        <a 
+                            class="header__item custom-nav-link" 
+                            routerLink="flatpage"
+                            routerLinkActive='active'
+                            >
+                            Flatpage Studio
+                        </a>
+                        <a 
+                            class="header__item custom-nav-link" 
+                            routerLink="blogs"
+                            routerLinkActive='active'
+                            >
+                            Blogs
+                        </a>
+                        <a 
+                            class="header__item custom-nav-link"
+                            routerLink="discover"
+                            routerLinkActive='active'
+                            >
+                            Discover
+                        </a>
+                    </nav>
+                </div>
+                <div class="header__btns" *ngIf="!loggedInStatus">
+                    <a class="button-small header__button" routerLink="signup">
+                        Sign Up
+                    </a>
+                    <a class="button-stroke button-small header__button" routerLink="login">
+                        Login
+                    </a>
+                </div>
+                
+                <div 
+                    class="header__btns"
+                    *ngIf="loggedInStatus">
+                    <button class="user-account" mat-button [matMenuTriggerFor]="menu">
+                        {{ username }} 
+                        <i style="padding: 5px" class="fa-solid fa-angle-down"></i></button>
+                    <mat-menu #menu="matMenu" xPosition="before">
+                        <button (click) = "logOut()" 
+                               mat-menu-item  
+                               style="padding: 0 40px 0 20px;">
+                               Log Out
+                        </button>
+                    </mat-menu>
+                </div>
+ 
+            </div>
+        </div>
+    </header>
+</div>
+
+
+<section 
+        *ngIf="allowedVerificationEmail"
+        style="background-color: rgb(255, 239, 239);
+        min-height: 5vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;"
+        >
+    <div style="width: 58%;
+                margin: 0 auto; 
+                display: flex;
+                justify-content: flex-start;
+                ;
+                ">
+        <i class = "fa-regular fa-lightbulb" 
+            style = "margin-right: 30px; 
+                     font-size: 1.2rem;">
+        </i>
+
+        <h3 style="font-weight: 400; font-size: 16px">
+            Click on the the 
+            <a style="color: red; cursor: pointer;" (click) = "verifyEmailAccount()" >
+                Verify Email
+            </a> 
+            to verify your account
+        </h3>
+
+    </div>
+</section>

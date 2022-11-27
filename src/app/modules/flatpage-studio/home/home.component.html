@@ -1,0 +1,100 @@
+<div class="auth">
+  <div class="auth__main" style="background-image: url(/assets/img/bg-login-mobile.jpg)">
+    <div class="auth__wrap">
+      <div class="auth__title title title_xl">
+        Welcome to studio
+      </div>
+    </div>
+  </div>
+  <div class="auth__container">
+
+    <!-- screen 1 -->
+    <div class="auth__inner" *ngIf="!allowedFileUploadingComp">
+      <div class="auth__head">
+        <div class="auth__title title title_xl">
+          <p>Welcome to our Flatpage Studio.</p>
+          <p>Upload book to listen audio.</p>
+        </div>
+        <div class="auth__text">
+          Please upload pdf to continue
+        </div>
+      </div>
+
+      <div class="auth__form" action>
+        <div class="field auth__field">
+          <a href="" class="a-upload">
+            <img src="/assets/img/icons/icons8-pdf-24.png" alt="" style="opacity: .4;">
+            <input type="file"  
+                  id="file"
+                  multiple
+                  name="file"
+                  (change)="onChange($event)"
+                  #fileInput>
+            Upload EBook
+          </a>
+        </div>
+     
+        <div class="auth__btns" *ngIf="!continueStatus">
+          <button 
+            class="btn auth__btn" 
+            [disabled]="!file ? 'disabled' : null"
+            (click)="onContinue()">
+            Continue
+          </button>
+          <button 
+            class="btn btn_light auth__btn"
+            [disabled]="!file ? 'disabled' : null"
+            (click)="clearSelect()">
+            Clear
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- screen 2 -->
+    <div class="auth__inner" *ngIf="allowedFileUploadingComp">
+      <div class="auth__head">
+        <div class="auth__title title title_xl">
+          <p>2)</p>
+          <p>Welcome to our Flatpage Studio.</p>
+        </div>
+        <div class="auth__text">
+          Press Continue to listen Audio
+        </div>
+      </div>
+
+      <div class="auth__form" action>
+        <div class="field auth__field">
+          <a href="" class="a-upload" 
+          style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWx2JkdYnizJL3HkF7IFOI7a1_MaQnMGsIaQ&usqp=CAU');
+          background-repeat: no-repeat;
+          background-position: center;background-color: #fff;
+          height: 170px;
+          
+          ">
+            <span style="position: relative; left: 0px; top:62px">{{ file.name }}</span> 
+          </a>
+        </div>
+     
+        <div class="auth__btns">
+          <button 
+            class="btn auth__btn" 
+            [disabled]="!file ? 'disabled' : null"
+            (click)="onUpload()">
+            Continue
+          </button>
+          <button 
+            class="btn btn_light auth__btn"
+            (click)="goBack()">
+            Go Back
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="auth__bg" style="background-image: url('https://cdn.dribbble.com/users/1452333/screenshots/9804854/media/f6435048d3675440f7f14ceb1bf6e92b.png')">
+  </div>
+</div>

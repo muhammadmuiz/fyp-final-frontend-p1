@@ -1,0 +1,28 @@
+json-server --watch db.json -d 2000
+
+
+ <section 
+    style="background-color: rgb(255, 239, 239);
+            min-height: 5vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;"
+            >
+        <div style="width: 85%;
+                    margin: 0 auto; 
+                    display: flex;
+                    justify-content: flex-start;
+                    ">
+            <i class = "fa-regular fa-lightbulb" 
+                style = "margin-right: 30px; 
+                         font-size: 1.2rem;">
+            </i>
+            <h3 style="font-weight: 400;">
+                Click on the the 
+                <a href="#" style="color: red;">
+                    Verify Email
+                </a> 
+                to verify your account
+            </h3>
+        </div>
+   </section>

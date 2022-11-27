@@ -1,0 +1,127 @@
+#sec1 {
+    background-image: 
+      url('/assets/img/3.png');
+    min-height: 100vh;
+    background-position: center;
+    background-attachment: scroll;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  #sec1 .container {
+    padding: 5px;
+  }
+  #sec1 .container .row {
+    max-width: 1014px;
+    margin: 13% auto 0 auto;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #sec1 .container .row .col {
+    text-align: center;
+    color: #fff;
+  }
+  #sec1 .container .row .col a:first-of-type {
+    text-decoration: none;
+  }
+  #sec1 .container .row .col a:first-of-type img {
+    text-align: center;
+    width: 50px;
+    border-radius: 100%;
+    margin-bottom: 20px;
+  }
+  
+  #sec1 .container .row .col h1 {
+    text-align: center;
+    font-size: 54px;
+    font-weight: 700;
+  }
+  
+  #sec1 .container .row .col p {
+    text-align: center;
+    font-size: 15px;
+    width: 65%;
+    margin: 0 auto;
+    margin-top: 16px;
+    line-height: 1.7;
+    margin-bottom: 44px;
+    color: #e3e3e3;
+  }
+  #sec1 .container .row .col .btn {
+    text-decoration: none;
+    cursor: pointer;
+    color: #333333;
+    background-color: #50ea9b;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 21px;
+    border-radius: 4px;
+  }
+  
+  @media screen and (max-width: 1400px) {
+    #sec1 .container .row .col h1 {
+      font-size: 30px;
+    }
+    #sec1 .container .row .col p {
+      font-size: 14px;
+    }
+    #sec1 .container .row {
+      margin: 14% auto 10px auto;
+    }
+    #sec1 .container .row .col .btn {
+      font-size: 14px;
+      padding: 8px 19px;
+    }
+  }
+  
+  @media screen and (max-width: 1014px) {
+    #sec1 .container .row .col h1 {
+      font-size: 28px;
+    }
+    #sec1 .container .row .col p {
+      font-size: 13px;
+    }
+    #sec1 .container .row {
+      margin-bottom: 250px;
+    }
+    #sec1 .container .row .col .btn {
+      font-size: 13px;
+      padding: 7.5px 18px;
+    }
+    #sec1 .container .row .col a:first-of-type img {
+      width: 45px;
+    }
+  }
+  
+  @media screen and (max-width: 800px) {
+    #sec1 .container .row {
+      margin-bottom: 200px;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    #sec1 .container .row .col h1 {
+      font-size: 25px;
+    }
+    #sec1 .container .row .col p {
+      width: 90%;
+      font-size: 13px;
+    }
+    #sec1 .container .row {
+      margin-bottom: 200px;
+    }
+    #sec1 .container .row .col .btn {
+      font-size: 12px;
+    }
+    #sec1 .container .row .col a:first-of-type img {
+      width: 39px;
+    }
+  }
+  
+  @media screen and (max-width: 280px) {
+    #sec1 .container .row {
+      margin: 500px auto 66% auto;
+    }
+  }
+  
